@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from '../context/ThemeContext'
 
 const AddTodoForm = ({ addNewTodoFunc }) => {
   const [title, setTitle] = useState("");
@@ -22,9 +23,9 @@ const AddTodoForm = ({ addNewTodoFunc }) => {
     setInput(!input);
   };
 
-  const style = {
-    background: "rgb(240,240,240)",
-  };
+  const { theme } = useContext(ThemeContext)
+  const { isLight, light, dark } = theme
+  const style = isLight ? light : dark
 
   return (
     <form onSubmit={addTodo}>
